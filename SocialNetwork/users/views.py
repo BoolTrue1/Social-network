@@ -1,10 +1,11 @@
-from django.shortcuts import redirect
-from django.contrib.auth import authenticate
-from django.contrib.auth import login
-# from django.contrib.auth.forms import UserCreationForm
-from users.forms import UserCreationForm
+from django.contrib.auth import authenticate, login
 from django.views import View
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from users.forms import UserCreationForm
+
+
+
 
 
 class Register(View):
@@ -23,7 +24,7 @@ class Register(View):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
+            password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('home')
