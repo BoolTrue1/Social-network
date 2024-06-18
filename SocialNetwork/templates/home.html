@@ -2,16 +2,13 @@
 
 
 {% block content %}
-  <h1>Home page</h1>
+  <h1>Частота Своевременных Сообщений</h1>
   <hr>
 
-  {% if user.is_authenticated %}
-    <form action="{% url 'logout' %}" method="post">
-      {% csrf_token %}
-      <button type="submit">Logout</button>
-    </form>
-  {% else %}
-    <a href="{% url 'login' %}">Login</a> |
-    <a href="{% url 'register' %}">Register</a>
-  {% endif %}
+  <ul class="mt-4 list-group" style="max-width: 300px;">
+    <li class="list-group-item bg-dark text-light"><a class="text-decoration-none" href="">Профиль</a></li>
+    <li class="list-group-item bg-dark text-light"><a class="text-decoration-none" href="">Редактировать профиль</a></li>
+    <li class="list-group-item bg-dark text-light"><a class="text-decoration-none" href="">Друзья</a></li>
+    <li class="list-group-item bg-dark text-light"><a class="text-decoration-none" href="">Люди</a></li>
+  </ul>
 {% endblock %}

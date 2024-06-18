@@ -3,7 +3,7 @@ from django.db import models
 
 
 class User(AbstractUser):
-    pass
+    profile = models.TextField(blank=True)
 
 
 class Profile(models.Model):
