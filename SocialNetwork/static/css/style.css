@@ -1,3 +1,12 @@
-body {
-    
+.main-ul-item {
+    letter-spacing: 3px;
 }
+
+.main-ul-item a {
+    color: rgb(255, 255, 255);
+}
+
+.main-ul-item a:hover {
+    color: rgb(98, 98, 98);
+}
+

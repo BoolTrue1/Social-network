@@ -14,6 +14,10 @@ def edit_profile(request):
     return render(request, 'edit_profile.html')
 
 
+def people(request):
+    return render(request, 'people.html')
+
+
 class Register(View):
     
     template_name = 'registration/register.html'
