@@ -2,6 +2,8 @@ from django.contrib.auth import authenticate, login
 from django.views import View
 from django.shortcuts import render, redirect
 
+from users.models import User, Profile
+
 from users.forms import UserCreationForm
 
 
@@ -14,8 +16,13 @@ def edit_profile(request):
     return render(request, 'edit_profile.html')
 
 
+def friends(request):
+    return render(request, 'friends.html')
+
+
 def people(request):
-    return render(request, 'people.html')
+    all_people = User.objects.all()
+    return render(request, 'people.html', {'data': all_people})
 
 
 class Register(View):

@@ -10,3 +10,16 @@
     color: rgb(13, 110, 253);
 }
 
+
+.people-ul-item {
+    letter-spacing: 3px;
+}
+
+.people-ul-item a {
+    color: rgb(13, 110, 253);
+}
+
+.people-ul-item a:hover {
+    /* color: #f8f9fa; */
+}
+

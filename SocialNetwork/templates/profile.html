@@ -3,8 +3,11 @@
 
 {% block content %}
   <h1>{{ user }}</h1>
-  <p><a href="{% url 'edit_profile' %}">Редактировать</a></p>
+  <p><a class="text-decoration-none" href="{% url 'edit_profile' %}">Редактировать</a></p>
   <hr>
 
-  
+  <p class="fs-4 fw-bold my-1">Имя: <span class="text-danger">отсутствует</span></p>
+  <p class="fs-4 fw-bold my-1">Фамилия: <span class="text-danger">отсутствует</span></p>
+  <p class="fs-4 fw-bold my-1">Дата рождения: <span class="text-danger">отсутствует</span></p>
+  <p class="fs-4 fw-bold">Адрес: <span class="text-danger">отсутствует</span></p>
 {% endblock %}

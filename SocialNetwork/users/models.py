@@ -2,6 +2,9 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
+class User(AbstractUser):
+    profile = models.TextField(blank=True)
+
 
 class Profile(models.Model):
     first_name = models.CharField(max_length=25, blank=True)
@@ -9,13 +12,3 @@ class Profile(models.Model):
     birth_date = models.DateField(blank=True)
     main_photo = models.FilePathField(blank=True)
     about_me = models.TextField(blank=True)
-
-
-class User(AbstractUser):
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-
-
-class Chat(models.Model):
-    id_profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    id_interlocutor = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    message = models.TextField()

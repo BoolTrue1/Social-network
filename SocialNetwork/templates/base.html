@@ -15,15 +15,17 @@
   <header class="header">
     <nav class="navbar navbar-dark bg-dark border-bottom border-2 border-light">
       <div class="container">
-        <div class="">
-          <span class="text-light">Пользователь:</span>
-          {% if user.is_authenticated %}
-            <a class="text-decoration-none text-success" href="{% url 'profile' %}">{{ user }}</a>
-          {% else %}
-            <span class="text-danger">не авторизирован</span>
-          {% endif %}
+        <div>
+          <a class="text-logo-FTM text-decoration-none text-light fs-5 fw-bold" href="{% url 'home' %}">Частота Своевременных Сообщений</a>
+          <div class="">
+            <span class="text-light">Пользователь:</span>
+            {% if user.is_authenticated %}
+              <a class="text-decoration-none text-success" href="{% url 'profile' %}">{{ user }}</a>
+            {% else %}
+              <span class="text-danger">не авторизирован</span>
+            {% endif %}
+          </div>
         </div>
-        <a class="text-decoration-none" href="{% url 'home' %}">Частота Своевременных Сообщений</a>
         <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Переключить навигацию">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,10 +41,10 @@
               </li>
               {% if user.is_authenticated %}
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="#">Друзья</a>
+                  <a class="nav-link" aria-current="page" href="{% url 'friends' %}">Друзья</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="#">Люди</a>
+                  <a class="nav-link" aria-current="page" href="{% url 'people' %}">Люди</a>
                 </li>
               {% endif %}
               <li class="nav-item dropdown">

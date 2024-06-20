@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
-from users.views import profile, edit_profile, people
+from users.views import profile, edit_profile, people, friends
 
 
 urlpatterns = [
@@ -11,6 +11,7 @@ urlpatterns = [
     path('profile', profile, name='profile'),
     path('edit_profile', edit_profile, name='edit_profile'),
     path('people', people, name='people'),
+    path('friends', friends, name='friends'),
     
     path('users/', include('users.urls')),
 ]
