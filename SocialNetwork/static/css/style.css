@@ -3,10 +3,10 @@
 }
 
 .main-ul-item a {
-    color: rgb(255, 255, 255);
+    color: #f8f9fa;
 }
 
 .main-ul-item a:hover {
-    color: rgb(98, 98, 98);
+    color: rgb(13, 110, 253);
 }
 
