@@ -1,27 +1,23 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
-  <h1>{{ user }}</h1>
+  <h1>{{ user.username }}</h1>
   <hr>
   <h2 class="fs-3">Редактирование</h2>
 
-  <form class="row g-3">
+  <form method="post" enctype="multipart/form-data" class="row g-3">
+    {% csrf_token %}
     <div class="col-md-6">
-      <label for="inputName4" class="form-label">Имя</label>
-      <input type="text" class="form-control" id="inputName4">
+      <label for="inputFullName" class="form-label">Имя</label>
+      <input type="text" name="full_name" class="form-control" id="inputFullName" value="{{ profile_form.full_name.value }}">
     </div>
     <div class="col-md-6">
-      <label for="inputSurname4" class="form-label">Фамилия</label>
-      <input type="text" class="form-control" id="inputSurname4">
+      <label for="inputBirthDate" class="form-label">Дата рождения</label>
+      <input type="date" name="birth_date" class="form-control" id="inputBirthDate" value="{{ profile_form.birth_date.value }}">
     </div>
     <div class="col-12">
-      <label for="inputAddress" class="form-label">Дата рождения</label>
-      <input type="date" class="form-control" id="inputAddress" placeholder="Адрес">
-    </div>
-    <div class="col-12">
-      <label for="inputAddress" class="form-label">Адрес</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="Адрес">
+      <label for="inputProfilePicture" class="form-label">Фотография профиля</label>
+      <input type="file" name="profile_picture" class="form-control" id="inputProfilePicture">
     </div>
     <div class="col-12">
       <button type="submit" class="btn btn-primary">Сохранить</button>

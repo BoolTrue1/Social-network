@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
   <h1>Друзья</h1>
   <hr>
 
-  <h2 class="text-secondary">У вас нет друзей</h1>
-
-
+  {% if user_profile.friends.all %}
+    <ul class="list-group">
+      {% for friend in user_profile.friends.all %}
+        <li class="list-group-item">{{ friend.user.username }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <h2 class="text-secondary">У вас нет друзей</h2>
+  {% endif %}
 {% endblock %}

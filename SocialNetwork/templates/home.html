@@ -1,14 +1,12 @@
 {% extends 'base.html' %}
 
-
-
 {% block content %}
   <h1>Частота Своевременных Сообщений</h1>
   <hr>
 
   {% if user.is_authenticated %}
     <ul class="mt-4 list-group rounded-0 border border-2" style="max-width: 400px;">
-      <li class="main-ul-item list-group-item bg-dark text-light border border-1 fw-bolder"><a class="text-decoration-none" href="{% url 'profile' %}">Профиль</a></li>
+      <li class="main-ul-item list-group-item bg-dark text-light border border-1 fw-bolder"><a class="text-decoration-none" href="{% url 'profile' user.username %}">Профиль</a></li>
       <li class="main-ul-item list-group-item bg-dark text-light border border-1 fw-bolder"><a class="text-decoration-none" href="{% url 'edit_profile' %}">Редактировать профиль</a></li>
       <li class="main-ul-item list-group-item bg-dark text-light border border-1 fw-bolder"><a class="text-decoration-none" href="{% url 'friends' %}">Друзья</a></li>
       <li class="main-ul-item list-group-item bg-dark text-light border border-1 fw-bolder"><a class="text-decoration-none" href="{% url 'people' %}">Люди</a></li>

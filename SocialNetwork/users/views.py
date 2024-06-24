@@ -29,7 +29,7 @@ def people(request):
 @login_required
 def profile_view(request, username):
     user = get_object_or_404(User, username=username)
-    user_profile = get_object_or_404(UserProfile, user=user)
+    user_profile, created = UserProfile.objects.get_or_create(user=user)
 
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=user)
