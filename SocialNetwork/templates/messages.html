@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Сообщения</h1>
+  <h2>Полученные сообщения</h2>
+  <ul>
+    {% for message in received_messages %}
+      <li><strong>{{ message.sender.username }}:</strong> {{ message.content }} <em>({{ message.timestamp }})</em></li>
+    {% empty %}
+      <li>Нет полученных сообщений</li>
+    {% endfor %}
+  </ul>
+  <h2>Отправленные сообщения</h2>
+  <ul>
+    {% for message in sent_messages %}
+      <li><strong>{{ message.recipient.username }}:</strong> {{ message.content }} <em>({{ message.timestamp }})</em></li>
+    {% empty %}
+      <li>Нет отправленных сообщений</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

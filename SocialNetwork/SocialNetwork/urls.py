@@ -15,6 +15,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('profile/<str:username>/', views.profile_view, name='profile'),
     path('add_friend/<str:username>/', views.add_friend, name='add_friend'),
+    path('send_message/<str:username>/', views.send_message, name='send_message'),
+    path('messages/', views.view_messages, name='messages'),
     path('dialogs/', views.dialogs_view, name='dialogs'),
     path('admin_panel/', views.admin_panel, name='admin_panel'),
     path('edit_user/<int:user_id>/', views.edit_user, name='edit_user'),

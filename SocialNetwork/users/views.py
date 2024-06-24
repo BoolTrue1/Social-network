@@ -3,8 +3,8 @@ from django.views import View
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from users.models import User, UserProfile
-from users.forms import UserCreationForm, UserProfileForm, UserForm
+from users.models import User, UserProfile, Message
+from users.forms import UserCreationForm, UserProfileForm, UserForm, MessageForm
 from django.contrib import messages
 
 
@@ -53,6 +53,7 @@ def edit_profile(request):
 def profile_view(request, username):
     user = get_object_or_404(User, username=username)
     user_profile, created = UserProfile.objects.get_or_create(user=user)
+    friends = user_profile.friends.all()
 
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=user)
@@ -70,7 +71,8 @@ def profile_view(request, username):
     return render(request, 'profile.html', {
         'user_form': user_form,
         'profile_form': profile_form,
-        'profile_user': user
+        'profile_user': user,
+        'friends': friends,
     })
 
 @login_required
@@ -80,11 +82,37 @@ def add_friend(request, username):
     
     if user_to_add != request.user:
         user_profile.friends.add(user_to_add.userprofile)
-        messages.success(request, f'You are now friends with {user_to_add.username}!')
+        messages.success(request, f'Вы добавили {user_to_add.username} в друзья!')
     else:
-        messages.warning(request, 'You cannot add yourself as a friend.')
+        messages.warning(request, 'Вы не можете добавить себя в друзья.')
 
     return redirect('profile', username=username)
+
+@login_required
+def send_message(request, username):
+    recipient = get_object_or_404(User, username=username)
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.sender = request.user
+            message.recipient = recipient
+            message.save()
+            messages.success(request, 'Сообщение отправлено!')
+            return redirect('profile', username=username)
+    else:
+        form = MessageForm()
+
+    return render(request, 'send_message.html', {'form': form, 'recipient': recipient})
+
+@login_required
+def view_messages(request):
+    received_messages = Message.objects.filter(recipient=request.user)
+    sent_messages = Message.objects.filter(sender=request.user)
+    return render(request, 'messages.html', {
+        'received_messages': received_messages,
+        'sent_messages': sent_messages,
+    })
 
 @login_required
 def dialogs_view(request):
