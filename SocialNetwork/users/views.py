@@ -3,7 +3,7 @@ from django.views import View
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from users.models import User, Profile, UserProfile
+from users.models import User, UserProfile
 from users.forms import UserCreationForm, UserProfileForm, UserForm
 from django.contrib import messages
 

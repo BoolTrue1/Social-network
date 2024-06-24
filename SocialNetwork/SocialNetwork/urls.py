@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 
 from django.conf.urls import handler404
 from django.shortcuts import render
-from . import views
+from users import views
 
 from users.views import profile, edit_profile, people, friends
 
