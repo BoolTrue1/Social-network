@@ -15,9 +15,10 @@
       {% endif %}
     </div>
     <div class="col-md-9">
-      <p class="fs-4 fw-bold my-1">Имя: <span class="text-danger">{{ profile_user.userprofile.full_name }}</span></p>
-      <p class="fs-4 fw-bold my-1">Дата рождения: <span class="text-danger">{{ profile_user.userprofile.birth_date }}</span></p>
-      <p class="fs-4 fw-bold">Адрес: <span class="text-danger">{{ profile_user.userprofile.address }}</span></p>
+      <p class="fs-4 fw-bold my-1">Имя: <span class="text-danger">{{ profile_user.userprofile.full_name|default:"отсутствует" }}</span></p>
+      <p class="fs-4 fw-bold my-1">Дата рождения: <span class="text-danger">{{ profile_user.userprofile.birth_date|date:"d E Y"|default:"отсутствует" }}</span></p>
+      <p class="fs-4 fw-bold">Адрес: <span class="text-danger">{{ profile_user.userprofile.address|default:"отсутствует" }}</span></p>
+      <p class="fs-4 fw-bold">О себе: <span class="text-danger">{{ profile_user.userprofile.bio|default:"отсутствует" }}</span></p>
     </div>
   </div>
 {% endblock %}

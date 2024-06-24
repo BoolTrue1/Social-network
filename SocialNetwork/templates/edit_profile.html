@@ -13,11 +13,15 @@
     </div>
     <div class="col-md-6">
       <label for="inputBirthDate" class="form-label">Дата рождения</label>
-      <input type="date" name="birth_date" class="form-control" id="inputBirthDate" value="{{ profile_form.birth_date.value }}">
+      <input type="date" name="birth_date" class="form-control" id="inputBirthDate" value="{{ profile_form.birth_date.value|date:'Y-m-d' }}">
     </div>
     <div class="col-12">
       <label for="inputProfilePicture" class="form-label">Фотография профиля</label>
       <input type="file" name="profile_picture" class="form-control" id="inputProfilePicture">
+    </div>
+    <div class="col-12">
+      <label for="inputBio" class="form-label">О себе</label>
+      <textarea name="bio" class="form-control" id="inputBio">{{ profile_form.bio.value }}</textarea>
     </div>
     <div class="col-12">
       <button type="submit" class="btn btn-primary">Сохранить</button>

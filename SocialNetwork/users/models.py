@@ -12,6 +12,7 @@ class UserProfile(models.Model):
     birth_date = models.DateField(null=True, blank=True)
     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
     friends = models.ManyToManyField('self', blank=True)
+    bio = models.TextField(blank=True)
     
     def __str__(self):
         return self.user.username

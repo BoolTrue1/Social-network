@@ -13,10 +13,6 @@ def profile(request):
     return render(request, 'profile.html')
 
 
-def edit_profile(request):
-    return render(request, 'edit_profile.html')
-
-
 def friends(request):
     return render(request, 'friends.html')
 
@@ -24,6 +20,33 @@ def friends(request):
 def people(request):
     all_people = User.objects.all()
     return render(request, 'people.html', {'data': all_people})
+
+
+@login_required
+def edit_profile(request):
+    user = request.user
+    user_profile, created = UserProfile.objects.get_or_create(user=user)
+
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=user)
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Your profile was successfully updated!')
+            return redirect('profile', username=user.username)
+        else:
+            print(user_form.errors)
+            print(profile_form.errors)
+    else:
+        user_form = UserForm(instance=user)
+        profile_form = UserProfileForm(instance=user_profile)
+
+    return render(request, 'edit_profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form,
+    })
 
 
 @login_required
