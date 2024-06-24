@@ -7,14 +7,16 @@
 
   <div class="row mb-3">
     <div class="col-md-3">
-      {% if profile_user.userprofile.profile_picture %}
-        <img src="{{ profile_user.userprofile.profile_picture.url }}" alt="Изображение профиля" class="img-thumbnail" style="width: 150px; height: 150px;">
-      {% else %}
-        <img src="{% static 'img/default_profile_picture.png' %}" alt="Изображение профиля" class="img-thumbnail" style="width: 150px; height: 150px;">
-      {% endif %}
+      <div class="square">
+        {% if profile_user.userprofile.profile_picture %}
+          <img src="{{ profile_user.userprofile.profile_picture.url }}" class="img-fluid rounded-4" alt="Изображение профиля">
+        {% else %}
+          <img src="{% static 'img/default_profile_picture.png' %}" class="img-fluid rounded-4" alt="Стандартное изображение профиля">
+        {% endif %}
+      </div>
     </div>
     <div class="col-md-9">
-      <p class="fs-4 fw-bold my-1"><span class="text-primary">Имя:</span> <span class="{% if profile_user.userprofile.full_name %} text-light {% else %} text-danger {% endif %}">{{ profile_user.userprofile.full_name|default:"отсутствует" }}</span></p>
+      <p class="fs-4 fw-bold my-1"><span class="text-primary">ФИО:</span> <span class="{% if profile_user.userprofile.full_name %} text-light {% else %} text-danger {% endif %}">{{ profile_user.userprofile.full_name|default:"отсутствует" }}</span></p>
       <p class="fs-4 fw-bold my-1"><span class="text-primary">Дата рождения:</span> <span class="{% if profile_user.userprofile.birth_date %} text-light {% else %} text-danger {% endif %}">{{ profile_user.userprofile.birth_date|date:"d E Y"|default:"отсутствует" }}</span></p>
       <p class="fs-4 fw-bold my-1"><span class="text-primary">Адрес:</span> <span class="{% if profile_user.userprofile.address %} text-light {% else %} text-danger {% endif %}">{{ profile_user.userprofile.address|default:"отсутствует" }}</span></p>
       <p class="fs-4 fw-bold my-1"><span class="text-primary">О себе:</span> <span class="{% if profile_user.userprofile.bio %} text-light {% else %} text-danger {% endif %}">{{ profile_user.userprofile.bio|default:"отсутствует" }}</span></p>

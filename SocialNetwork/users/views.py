@@ -137,6 +137,18 @@ def block_user(request, user_id):
     return redirect('admin_panel')
 
 
+@login_required
+def unblock_user(request, user_id):
+    if not request.user.is_staff:
+        return redirect('profile', username=request.user.username)
+
+    user = get_object_or_404(User, pk=user_id)
+    user.is_active = True
+    user.save()
+    messages.success(request, f'User {user.username} has been unblocked.')
+    return redirect('admin_panel')
+
+
 class Register(View):
     
     template_name = 'registration/register.html'

@@ -19,6 +19,7 @@ urlpatterns = [
     path('admin_panel/', views.admin_panel, name='admin_panel'),
     path('edit_user/<int:user_id>/', views.edit_user, name='edit_user'),
     path('block_user/<int:user_id>/', views.block_user, name='block_user'),
+    path('unblock_user/<int:user_id>/', views.unblock_user, name='unblock_user'),
     
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),

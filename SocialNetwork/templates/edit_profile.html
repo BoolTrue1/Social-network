@@ -8,16 +8,12 @@
   <form method="post" enctype="multipart/form-data" class="row g-3">
     {% csrf_token %}
     <div class="col-md-6">
-      <label for="inputFullName" class="form-label">Имя</label>
+      <label for="inputFullName" class="form-label">ФИО</label>
       <input type="text" name="full_name" class="form-control" id="inputFullName" value="{{ profile_form.full_name.value }}">
     </div>
     <div class="col-md-6">
       <label for="inputBirthDate" class="form-label">Дата рождения</label>
       <input type="date" name="birth_date" class="form-control" id="inputBirthDate" value="{{ profile_form.birth_date.value|date:'Y-m-d' }}">
-    </div>
-    <div class="col-12">
-      <label for="inputProfilePicture" class="form-label">Фотография профиля</label>
-      <input type="file" name="profile_picture" class="form-control" id="inputProfilePicture">
     </div>
     <div class="col-12">
       <label for="inputAddress" class="form-label">Адрес</label>
@@ -26,6 +22,10 @@
     <div class="col-12">
       <label for="inputBio" class="form-label">О себе</label>
       <textarea name="bio" class="form-control" id="inputBio">{{ profile_form.bio.value }}</textarea>
+    </div>
+    <div class="col-12">
+      <label for="inputProfilePicture" class="form-label">Фотография профиля</label>
+      <input type="file" name="profile_picture" class="form-control" id="inputProfilePicture">
     </div>
     <div class="col-12">
       <button type="submit" class="btn btn-primary">Сохранить</button>
