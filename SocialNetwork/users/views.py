@@ -8,6 +8,7 @@ from users.models import User, UserProfile, Message, Post, Album, Photo, Communi
 from users.forms import UserCreationForm, UserProfileForm, UserForm, MessageForm
 from django.contrib import messages
 from django.utils import timezone
+from datetime import timedelta
 
 
 
@@ -209,7 +210,7 @@ def admin_unblock_user(request, user_id):
 def admin_mute_user(request, user_id):
     user = get_object_or_404(User, id=user_id)
     user.is_muted = True
-    user.mute_until = timezone.now() + timedelta(days=1)  # Временно запретить на 1 день
+    user.mute_until = timezone.now() + timedelta(days=1)
     user.save()
     messages.success(request, f'Пользователь {user.username} временно отключен.')
     return redirect('admin:user_changelist')
