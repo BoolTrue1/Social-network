@@ -7,12 +7,16 @@
   {% if user.is_authenticated %}
     <ul class="mt-4 list-group rounded-0 border border-2" style="max-width: 400px;">
       {% if user.is_superuser %}
-        <li class="main-ul-item main-ul-item-admin list-group-item bg-dark text-danger border border-1 fw-bolder"><a class="text-decoration-none" href="{% url 'admin_panel' %}">Админка</a></li>
+        <li class="main-ul-item main-ul-item-admin list-group-item bg-dark text-danger border border-1 fw-bolder"><a class="text-decoration-none" href="{% url 'admin:index' %}">Админка</a></li>
+        <li class="main-ul-item main-ul-item-admin list-group-item bg-dark text-danger border border-1 fw-bolder"><a class="text-decoration-none" href="{% url 'admin_panel' %}">Мини-Админка</a></li>
       {% endif %}
       <li class="main-ul-item list-group-item bg-dark text-light border border-1 fw-bolder"><a class="text-decoration-none" href="{% url 'profile' user.username %}">Профиль</a></li>
       <li class="main-ul-item list-group-item bg-dark text-light border border-1 fw-bolder"><a class="text-decoration-none" href="{% url 'edit_profile' %}">Редактировать профиль</a></li>
       <li class="main-ul-item list-group-item bg-dark text-light border border-1 fw-bolder"><a class="text-decoration-none" href="{% url 'friends' %}">Друзья</a></li>
       <li class="main-ul-item list-group-item bg-dark text-light border border-1 fw-bolder"><a class="text-decoration-none" href="{% url 'people' %}">Люди</a></li>
+      <li class="main-ul-item list-group-item bg-dark text-light border border-1 fw-bolder"><a class="text-decoration-none" href="{% url 'dialogs' %}">Диалоги</a></li>
+      <li class="main-ul-item list-group-item bg-dark text-light border border-1 fw-bolder"><a class="text-decoration-none" href="{% url 'messages' %}">Сообщения</a></li>
+      <li class="main-ul-item list-group-item bg-dark text-light border border-1 fw-bolder"><a class="text-decoration-none" href="{% url 'community' %}">Сообщества</a></li>
     </ul>
   {% else %}
     <ul class="mt-4 list-group rounded-0 border border-2" style="max-width: 400px;">

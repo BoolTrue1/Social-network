@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 from django.conf.urls import handler404
 from django.shortcuts import render
 from users import views
+# from . import views
 
 from users.views import profile, edit_profile, people, friends
 
@@ -17,6 +18,17 @@ urlpatterns = [
     path('add_friend/<str:username>/', views.add_friend, name='add_friend'),
     path('send_message/<str:username>/', views.send_message, name='send_message'),
     path('messages/', views.view_messages, name='messages'),
+    path('album/<str:username>/', views.album_view, name='album'),
+    path('photo/<int:album_id>/', views.photo_view, name='photo'),
+    path('community/', views.community_view, name='community'),
+    path('community/<int:community_id>/', views.community_detail_view, name='community_detail'),
+    path('join_community/<int:community_id>/', views.join_community, name='join_community'),
+    path('leave_community/<int:community_id>/', views.leave_community, name='leave_community'),
+    path('admin/block_user/<int:user_id>/', views.admin_block_user, name='admin_block_user'),
+    path('admin/unblock_user/<int:user_id>/', views.admin_unblock_user, name='admin_unblock_user'),
+    path('admin/mute_user/<int:user_id>/', views.admin_mute_user, name='admin_mute_user'),
+    path('admin/unmute_user/<int:user_id>/', views.admin_unmute_user, name='admin_unmute_user'),
+    path('admin/delete_user/<int:user_id>/', views.admin_delete_user, name='admin_delete_user'),
     path('dialogs/', views.dialogs_view, name='dialogs'),
     path('admin_panel/', views.admin_panel, name='admin_panel'),
     path('edit_user/<int:user_id>/', views.edit_user, name='edit_user'),

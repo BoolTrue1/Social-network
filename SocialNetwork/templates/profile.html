@@ -36,4 +36,23 @@
       </div>
     </div>
   </div>
+
+  <hr>
+  <h2>Микроблог</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <textarea name="content" class="form-control" rows="3" placeholder="Что у вас нового?"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Опубликовать</button>
+  </form>
+  <hr>
+  <div class="posts">
+    {% for post in posts %}
+      <div class="post mb-3">
+        <p>{{ post.content }}</p>
+        <small class="text-muted">{{ post.timestamp|date:"d E Y H:i" }}</small>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ album.title }}</h1>
+<hr>
+
+<div class="photo-list">
+  {% for photo in photos %}
+    <div class="photo">
+      <img src="{{ photo.image.url }}" class="img-fluid" alt="Photo">
+      <p>{{ photo.caption }}</p>
+      <small class="text-muted">{{ photo.timestamp|date:"d E Y H:i" }}</small>
+    </div>
+  {% endfor %}
+</div>
+
+<hr>
+<h2>Добавить фотографию</h2>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="mb-3">
+    <input type="file" name="image" class="form-control">
+  </div>
+  <div class="mb-3">
+    <input type="text" name="caption" class="form-control" placeholder="Описание">
+  </div>
+  <button type="submit" class="btn btn-primary">Добавить</button>
+</form>
+{% endblock %}

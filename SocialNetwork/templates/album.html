@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ profile_user.username }}: Альбомы</h1>
+<hr>
+
+<div class="album-list">
+  {% for album in albums %}
+    <div class="album">
+      <h2><a href="{% url 'photo' album.id %}">{{ album.title }}</a></h2>
+      <small class="text-muted">{{ album.timestamp|date:"d E Y H:i" }}</small>
+    </div>
+  {% endfor %}
+</div>
+
+<hr>
+<h2>Создать новый альбом</h2>
+<form method="post">
+  {% csrf_token %}
+  <div class="mb-3">
+    <input type="text" name="title" class="form-control" placeholder="Название альбома">
+  </div>
+  <button type="submit" class="btn btn-primary">Создать</button>
+</form>
+{% endblock %}

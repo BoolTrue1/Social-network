@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Сообщества</h1>
+<hr>
+
+<div class="community-list">
+  {% for community in communities %}
+    <div class="community">
+      <h2><a href="{% url 'community_detail' community.id %}">{{ community.name }}</a></h2>
+      <p>{{ community.description }}</p>
+      <small class="text-light">{{ community.timestamp|date:"d E Y H:i" }}</small>
+    </div>
+  {% endfor %}
+</div>
+
+<hr>
+<h2>Создать новое сообщество</h2>
+<form method="post">
+  {% csrf_token %}
+  <div class="mb-3">
+    <input type="text" name="name" class="form-control" placeholder="Название сообщества">
+  </div>
+  <div class="mb-3">
+    <textarea name="description" class="form-control" rows="3" placeholder="Описание"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Создать</button>
+</form>
+{% endblock %}

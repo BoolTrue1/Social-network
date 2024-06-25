@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ community.name }}</h1>
+<hr>
+
+<p>{{ community.description }}</p>
+<small class="text-light">{{ community.timestamp|date:"d E Y H:i" }}</small>
+
+<hr>
+<h2>Члены сообщества</h2>
+<ul>
+  {% for member in members %}
+    <li>{{ member.username }}</li>
+  {% endfor %}
+</ul>
+
+{% if user in members %}
+  <a href="{% url 'leave_community' community.id %}" class="btn btn-danger">Покинуть сообщество</a>
+{% else %}
+  <a href="{% url 'join_community' community.id %}" class="btn btn-primary">Присоединиться к сообществу</a>
+{% endif %}
+{% endblock %}
